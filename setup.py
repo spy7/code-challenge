@@ -6,6 +6,6 @@ setup(
     description='A stock recommendation package',
     author="Carlos",
     author_email="carlosspy@gmail.com",
-    packages=find_packages(),
+    packages=find_packages(exclude=("tests",)),
     install_requires=[],
 )
