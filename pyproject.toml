@@ -10,6 +10,11 @@ packages = [{include = "code_challenge"}]
 python = "^3.9"
 
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.0"
+flake8 = "^6.0.0"
+black = "^22.10.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
