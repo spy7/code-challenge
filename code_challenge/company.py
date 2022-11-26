@@ -1,16 +1,10 @@
-import requests
+from code_challenge.api.graphql_reader import GraphQLReader
+from code_challenge.services.company_service import CompanyService
 
 
 def get_companies():
-    q = """{ companies {
-        name
-    } }"""
-
-    headers = {"Authorization": "Bearer password"}
-    resp = requests.post(
-        "http://localhost:8000/graphql", json={"query": q}, headers=headers
-    )
-    print(resp.text)
+    reader = GraphQLReader()
+    print(CompanyService(reader).get_companies())
 
 
 if __name__ == "__main__":

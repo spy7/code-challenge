@@ -10,5 +10,5 @@ setup(
     entry_points={
         "console_scripts": ["cc_config=code_challenge.api.config:config"],
     },
-    install_requires=["requests>=2.28.1"],
+    install_requires=["requests>=2.28.1", "pandas>=1.5.2"],
 )

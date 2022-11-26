@@ -10,7 +10,7 @@ from code_challenge.api.settings import Settings
 @patch("code_challenge.api.config_file.Path", MagicMock())
 class ConfigFileTestCase(TestCase):
     @patch("code_challenge.api.config_file.configparser.ConfigParser")
-    def test_read(self, configparser) -> None:
+    def test_read(self, configparser):
         file = {"api": {"Host": "local", "Endpoint": "graph", "Token": "123"}}
         configparser.return_value.__getitem__.side_effect = file.__getitem__
         configparser.return_value.__contains__.return_value = True
