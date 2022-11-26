@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 setup(
     name="code_challenge",
@@ -7,5 +7,8 @@ setup(
     author="Carlos",
     author_email="carlosspy@gmail.com",
     packages=find_packages(exclude=("tests",)),
-    install_requires=[],
+    entry_points={
+        "console_scripts": ["cc_config=code_challenge.api.config:config"],
+    },
+    install_requires=["requests>=2.28.1"],
 )

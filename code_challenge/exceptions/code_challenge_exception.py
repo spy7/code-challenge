@@ -1,0 +1,2 @@
+class CodeChallengeException(Exception):
+    pass
