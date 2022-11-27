@@ -61,7 +61,7 @@ class CompanyService:
         response = self.graphql_reader.query(query)
         return GraphQLData.convert_to_data_frame(response)
 
-    def get_recommendation(
+    def get_recommendations(
         self,
         company: Union[Company, str],
         start_date: Optional[str] = None,

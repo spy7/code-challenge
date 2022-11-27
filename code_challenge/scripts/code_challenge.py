@@ -60,7 +60,7 @@ def main():
             ticker = args.ticker
             start_date = args.start_date
             end_date = args.end_date
-            df = service.get_recommendation(ticker, start_date, end_date)
+            df = service.get_recommendations(ticker, start_date, end_date)
             show(df)
     except (CodeChallengeException) as e:
         print(str(e))
