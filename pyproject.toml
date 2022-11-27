@@ -10,6 +10,7 @@ packages = [{include = "code_challenge"}]
 python = "^3.9"
 requests = "^2.28.1"
 pandas = "^1.5.2"
+tabulate = "^0.9.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.0"

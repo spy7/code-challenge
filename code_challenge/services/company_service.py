@@ -29,6 +29,15 @@ class CompanyService:
         response = self.graphql_reader.query(query)
         return GraphQLData.convert_to_companies(response)
 
+    def get_companies_as_dataframe(
+        self, sector: Optional[str] = None, country: Optional[str] = None
+    ) -> DataFrame:
+        filter = {"sector": sector, "country": country}
+        result = ["name", "ticker", "sector", "country"]
+        query = GraphQLQuery.create_query("companies", filter, result)
+        response = self.graphql_reader.query(query)
+        return GraphQLData.convert_to_data_frame(response)
+
     @classmethod
     def get_ticker(cls, company: Union[Company, str]) -> str:
         if isinstance(company, Company):
