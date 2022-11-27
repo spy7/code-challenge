@@ -29,5 +29,6 @@ class RecommendationService:
 
     def transform_scalar_to_average(self, dataframe: DataFrame) -> DataFrame:
         df = self.add_scalar_to_dataframe(dataframe)
-        df = df.groupby("date", as_index=False)["scalar"].mean()
-        return DataFrame(df)
+        df = DataFrame(df.groupby("date", as_index=False)["scalar"].mean())
+        df = df.rename(columns={"scalar": "average"})
+        return df

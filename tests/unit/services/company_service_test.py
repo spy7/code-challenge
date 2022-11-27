@@ -43,7 +43,7 @@ class CompanyServiceTestCase(TestCase):
             "data": {"run": [{"date": "2022-11-15", "toGrade": "Buy"}]}
         }
         response = CompanyService(reader).get_recommendation("ABC")
-        self.assertEqual(1.0, response["scalar"][0])
+        self.assertEqual(1.0, response["average"][0])
 
     def test_add_new_companies(self):
         reader = MagicMock()

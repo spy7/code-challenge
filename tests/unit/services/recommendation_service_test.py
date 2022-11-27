@@ -31,4 +31,4 @@ class RecommendationServiceTestCase(TestCase):
     def test_transform_average(self):
         df = DataFrame(data=self.sample_data)
         df = RecommendationService().transform_scalar_to_average(df)
-        self.assertEqual([0.5, 1.0], list(df["scalar"]))
+        self.assertEqual([0.5, 1.0], list(df["average"]))
