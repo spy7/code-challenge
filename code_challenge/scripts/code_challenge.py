@@ -14,10 +14,12 @@ def main(*args, **kwargs):
     # print(service.get_recommendation("AAPL"))
     # companies = [Company(name="ab", ticker="AB", sector="t", country="PT")]
     # print(service.add_new_companies(companies))
-    prices = [
-        Price(date="2022-11-13", open=2, high=3, low=2, close=2.5, volume=10)
-    ]
-    print(service.add_single_prices("AB", prices))
+    # prices = [
+    #     Price(date="2022-11-11", open=2, high=3, low=2, close=2.5, volume=10)
+    # ]
+    # print(service.add_prices("AB", prices))
+    # print(service.add_single_price("AB", "2022-11-12", 2, 3, 2, 2, 5))
+    print(service.update_price("AB", "2022-11-13", 2, 4))
 
 
 if __name__ == "__main__":

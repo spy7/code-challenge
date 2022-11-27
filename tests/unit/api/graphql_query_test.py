@@ -8,7 +8,12 @@ class GraphQLQueryTestCase(TestCase):
         self.assertEqual('"text"', GraphQLQuery.treat_filter_value("text"))
 
     def test_treat_filter_value_number(self):
-        self.assertEqual('2', GraphQLQuery.treat_filter_value(2))
+        self.assertEqual("2", GraphQLQuery.treat_filter_value(2))
+
+    def test_treat_filter_value_dict(self):
+        self.assertEqual(
+            '{x:1, y:"z"}', GraphQLQuery.treat_filter_value({"x": 1, "y": "z"})
+        )
 
     def test_treat_filter_value_list(self):
         self.assertEqual(
@@ -23,7 +28,7 @@ class GraphQLQueryTestCase(TestCase):
 
     def test_treat_filter_with_list(self):
         self.assertEqual(
-            'x:1, y:[{z:2}]',
+            "x:1, y:[{z:2}]",
             GraphQLQuery.treat_filter({"x": 1, "y": [{"z": 2}]}),
         )
 

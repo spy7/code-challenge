@@ -8,12 +8,14 @@ class GraphQLQuery:
     def treat_filter_value(cls, filter_value) -> str:
         if isinstance(filter_value, list):
             filter_list = ", ".join(
-                f"{{{cls.treat_filter(item)}}}" for item in filter_value
+                cls.treat_filter_value(item) for item in filter_value
             )
             return f"[{filter_list}]"
+        if isinstance(filter_value, Dict):
+            return f"{{{cls.treat_filter(filter_value)}}}"
         if isinstance(filter_value, str):
             return f'"{filter_value}"'
-        return f'{filter_value}'
+        return f"{filter_value}"
 
     @classmethod
     def treat_filter(cls, filters: Dict) -> str:

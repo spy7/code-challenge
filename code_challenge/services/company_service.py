@@ -7,7 +7,8 @@ from code_challenge.api.graphql_data import GraphQLData
 from code_challenge.api.graphql_query import GraphQLQuery
 from code_challenge.api.graphql_reader import GraphQLReader
 from code_challenge.models.company import Company
-from code_challenge.models.price import Price
+from code_challenge.models.price import Price, PriceUpdate
+from code_challenge.models.recommendation import Recommendation
 from code_challenge.services.recommendation_service import (
     RecommendationService,
 )
@@ -56,7 +57,7 @@ class CompanyService:
         company: Union[Company, str],
         start_date: Optional[str] = None,
         end_date: Optional[str] = None,
-    ) -> float:
+    ) -> DataFrame:
         ticker = self.get_ticker(company)
         filter = {
             "ticker": ticker,
@@ -67,7 +68,7 @@ class CompanyService:
         query = GraphQLQuery.create_query("recommendations", filter, result)
         response = self.graphql_reader.query(query)
         df = GraphQLData.convert_to_data_frame(response)
-        return RecommendationService().calc_average_recommendation(df)
+        return RecommendationService().transform_scalar_to_average(df)
 
     def add_new_companies(self, companies: List[Company]) -> bool:
         for company in companies:
@@ -78,7 +79,7 @@ class CompanyService:
             GraphQLData.validate_response(response)
         return True
 
-    def add_single_prices(
+    def add_prices(
         self, company: Union[Company, str], prices: List[Price]
     ) -> bool:
         ticker = self.get_ticker(company)
@@ -86,6 +87,67 @@ class CompanyService:
         data = {"ticker": ticker, "prices": data_prices}
         result = ["status"]
         mutation = GraphQLQuery.create_mutation("addPrices", data, result)
+        response = self.graphql_reader.query(mutation)
+        GraphQLData.validate_response(response)
+        return GraphQLData.verify_status(response)
+
+    def add_single_price(
+        self,
+        company: Union[Company, str],
+        date: str,
+        open: float,
+        high: float,
+        low: float,
+        close: float,
+        volume: float,
+    ) -> bool:
+        prices = [Price(date, open, high, low, close, volume)]
+        return self.add_prices(company, prices)
+
+    def add_recommendations(
+        self,
+        company: Union[Company, str],
+        recommendations: List[Recommendation],
+    ) -> bool:
+        ticker = self.get_ticker(company)
+        data_rec = [dataclasses.asdict(r) for r in recommendations]
+        data = {"ticker": ticker, "recommendations": data_rec}
+        result = ["status"]
+        mutation = GraphQLQuery.create_mutation(
+            "addRecommendations", data, result
+        )
+        response = self.graphql_reader.query(mutation)
+        GraphQLData.validate_response(response)
+        return GraphQLData.verify_status(response)
+
+    def add_single_recommendation(
+        self,
+        company: Union[Company, str],
+        date: str,
+        firm: str,
+        fromGrade: str,
+        toGrade: str,
+    ) -> bool:
+        recommendations = [Recommendation(date, firm, fromGrade, toGrade)]
+        return self.add_recommendations(company, recommendations)
+
+    def update_price(
+        self,
+        company: Union[Company, str],
+        date: str,
+        open: Optional[float] = None,
+        high: Optional[float] = None,
+        low: Optional[float] = None,
+        close: Optional[float] = None,
+        volume: Optional[float] = None,
+    ) -> bool:
+        ticker = self.get_ticker(company)
+        price = dataclasses.asdict(
+            PriceUpdate(date, open, high, low, close, volume)
+        )
+        data = {"ticker": ticker, "price": price}
+        result = ["status"]
+        mutation = GraphQLQuery.create_mutation("updatePrice", data, result)
         response = self.graphql_reader.query(mutation)
         GraphQLData.validate_response(response)
         return GraphQLData.verify_status(response)

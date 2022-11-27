@@ -6,6 +6,6 @@ class Recommendation:
     """Recommendation model"""
 
     date: str
-    firm: float
-    fromGrade: float
-    toGrade: float
+    firm: str
+    fromGrade: str
+    toGrade: str

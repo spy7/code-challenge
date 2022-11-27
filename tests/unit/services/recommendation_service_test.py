@@ -8,8 +8,8 @@ from code_challenge.services.recommendation_service import (
 
 class RecommendationServiceTestCase(TestCase):
     sample_data = {
-        "name": ["a", "b", "c"],
-        "toGrade": ["Buy", "Strong Buy", "Negative"],
+        "date": ["2022-11-05", "2022-11-05", "2022-11-05", "2022-11-08"],
+        "toGrade": ["Buy", "Strong Buy", "Negative", "Positive"],
     }
 
     def test_get_scalar(self):
@@ -26,9 +26,9 @@ class RecommendationServiceTestCase(TestCase):
     def test_add_scalar_to_dataframe(self):
         df = DataFrame(data=self.sample_data)
         df = RecommendationService().add_scalar_to_dataframe(df)
-        self.assertEqual([1.0, 1.5, -1.0], list(df["scalar"]))
+        self.assertEqual([1.0, 1.5, -1.0, 1.0], list(df["scalar"]))
 
-    def test_calc_average_recommendation(self):
+    def test_transform_average(self):
         df = DataFrame(data=self.sample_data)
-        avg = RecommendationService().calc_average_recommendation(df)
-        self.assertEqual(0.5, avg)
+        df = RecommendationService().transform_scalar_to_average(df)
+        self.assertEqual([0.5, 1.0], list(df["scalar"]))
