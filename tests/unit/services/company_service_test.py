@@ -87,3 +87,11 @@ class CompanyServiceTestCase(TestCase):
             "ABC", "2022-11-15", "fgh", "Negative", "Buy"
         )
         self.assertTrue(response)
+
+    def test_update_price(self):
+        reader = MagicMock()
+        reader.query.return_value = {"data": {"run": {"status": "OK"}}}
+        response = CompanyService(reader).update_price(
+            "ABC", "2022-11-15", open=2
+        )
+        self.assertTrue(response)
