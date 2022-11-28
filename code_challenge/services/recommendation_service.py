@@ -2,6 +2,8 @@ from pandas import DataFrame
 
 
 class RecommendationService:
+    """Service to calculate values for recommendation data"""
+
     grades: dict = {
         "Buy": 1,
         "Neutral": 0,
