@@ -4,7 +4,7 @@ Code Challenge package
 
 # Requirements
 
-- Have python and poetry installed.
+- Have python installed.
 
 # Download package
 
@@ -30,7 +30,7 @@ cd code-challenge-master
 
 # Installation
 
-- Run the installation script:
+- Install dependencies and the code challenge package:
 
 ```console
 python setup.py install
@@ -38,16 +38,11 @@ python setup.py install
 
 # Feed with data
 
-- Install feed requirements:
+- Run feed script for each desired company (example: AMD)
+- Use additional parameters to configure the API (`--host`, `--endpoint`, `--token`)
 
 ```console
-poetry install --only feed
-```
-
-- Run feed script for each desired company (example: AMD):
-
-```console
-python -m feeds.run AMD
+python -m feeds.run AMD --host http://localhost:8000 --endpoint graphql --token password
 ```
 
 # Programming with the package
