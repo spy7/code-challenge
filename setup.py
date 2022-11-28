@@ -10,5 +10,5 @@ setup(
     entry_points={
         "console_scripts": ["code_challenge=scripts.code_challenge:main"],
     },
-    install_requires=["requests>=2.28.1", "pandas>=1.5.2"],
+    install_requires=["requests>=2.28.1", "pandas>=1.5.2", "tabulate>=0.9.0"],
 )
