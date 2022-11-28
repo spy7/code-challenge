@@ -10,6 +10,20 @@ Code Challenge package
 python setup.py install
 ```
 
+# Feed with data
+
+- Install feed requirements:
+
+```console
+poetry install --only feed
+```
+
+- Run feed script for each desired company (example: AMD):
+
+```console
+python -m feeds.run AMD
+```
+
 # Programming with the package
 
 ## Configurate connection

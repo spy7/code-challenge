@@ -1,10 +1,8 @@
-from typing import Dict
-
 from pandas import DataFrame
 
 
 class RecommendationService:
-    grades: Dict = {
+    grades: dict = {
         "Buy": 1,
         "Neutral": 0,
         "Strong Buy": 1.5,

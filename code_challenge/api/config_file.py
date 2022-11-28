@@ -6,7 +6,7 @@ from code_challenge.api.settings import Settings
 
 
 class ConfigFile:
-    """ConfigFile class to read and update settings file"""
+    """ConfigFile class to read and update settings from a file"""
 
     folder: str = ".config/code_challenge"
     filename: str = "config.ini"

@@ -9,9 +9,8 @@ from code_challenge.api.graphql_reader import GraphQLReader
 from code_challenge.models.company import Company
 from code_challenge.models.price import Price, PriceUpdate
 from code_challenge.models.recommendation import Recommendation
-from code_challenge.services.recommendation_service import (
-    RecommendationService,
-)
+from code_challenge.services.recommendation_service import \
+    RecommendationService
 
 
 class CompanyService:
