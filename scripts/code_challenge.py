@@ -5,7 +5,9 @@ from tabulate import tabulate
 from code_challenge.api.config_file import ConfigFile
 from code_challenge.api.graphql_reader import GraphQLReader
 from code_challenge.services.company_service import CompanyService
-from code_challenge.exceptions.code_challenge_exception import CodeChallengeException
+from code_challenge.exceptions.code_challenge_exception import (
+    CodeChallengeException,
+)
 
 
 def main():
@@ -42,7 +44,7 @@ def main():
                 settings.endpoint = args.endpoint
             if args.token:
                 settings.token = args.token
-            config_file.write(settings)       
+            config_file.write(settings)
         if args.command == "get_companies":
             sector = args.sector
             country = args.country
