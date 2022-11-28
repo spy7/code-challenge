@@ -2,9 +2,32 @@
 
 Code Challenge package
 
+# Requirements
+
+-   Have python and poetry installed.
+
+# Download package
+
+- Clone the package from GitHub or download the zip.
+
+```console
+git clone git@github.com:spy7/code-challenge.git
+
+# or
+
+wget https://github.com/spy7/code-challenge/archive/refs/heads/master.zip
+unzip master -d code_challenge
+```
+
 # Installation
 
-- Download the package and run the command below:
+- Enter the package folder:
+
+```console
+cd code_challenge
+```
+
+- Run the installation script:
 
 ```console
 python setup.py install
